@@ -1,13 +1,12 @@
 import express from 'express';
-
 import apiRouter from '../routes/index'
 import path from 'path';
 import * as http from 'http';
+import { mongoose } from '../mongo/mongo';
 
+ mongoose();
 const app = express();
-
 app.use(express.json());
-
 app.use('/api',apiRouter);
 
 app.use(function(err,req,res,next){
