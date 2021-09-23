@@ -1,6 +1,4 @@
 import { connect } from "mongoose";
-import * as modelPro from '../models/producto'
-import * as modelMen from '../models/message'
 const URL = 'mongodb://viviana:123456@localhost:27017/ecommerce';
 
 export const mongoose = async () => {

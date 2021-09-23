@@ -1,4 +1,5 @@
 import {DBService} from '../services/db';
+import faker from 'faker';
 
 const tableName = 'productos';
 
@@ -104,6 +105,31 @@ class Producto{
         res.json({
         msg: 'Producto eliminada',
         });
+  }
+
+   getProductoFaker(req,res){
+    const {cant} = req.query;
+    const respuesta = [];
+    if(cant==0){
+        res.json({
+            data: "La cantidad debe ser mayor a 0, de lo contrario no hay productos"
+        });
+    }else{
+        for(let i =0; i<cant; i++){
+            respuesta.push({
+                nombre: faker.commerce.productName(),
+                precio: faker.commerce.price(),
+                descripcion: faker.commerce.productDescription(),
+                codigo: faker.datatype.number(),
+                foto: faker.image.imageUrl(),
+                stock: faker.datatype.number(),
+
+            })
+        }
+        res.json({
+            data: respuesta
+        });
+    }
   }
 }
 export const productoController = new Producto();

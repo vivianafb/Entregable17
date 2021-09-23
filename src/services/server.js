@@ -4,7 +4,7 @@ import path from 'path';
 import * as http from 'http';
 import { mongoose } from '../mongo/mongo';
 
- mongoose();
+mongoose();
 const app = express();
 app.use(express.json());
 app.use('/api',apiRouter);
