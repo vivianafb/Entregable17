@@ -1,5 +1,6 @@
 import knex from 'knex';
 import dbConfig from '../../knexfile';
+import faker from 'faker';
 
 class DB {
   constructor() {
@@ -7,6 +8,7 @@ class DB {
     console.log(`SETTING ${environment} DB`);
     const options = dbConfig[environment];
     this.connection = knex(options);
+    this.data = []
   }
 
   init() { 
@@ -34,6 +36,19 @@ class DB {
     if (id) return this.connection(tableName).where('id', id);
 
     return this.connection(tableName);
+  }
+
+  post(tableName){
+    const newFaker = {
+      nombre: faker.commerce.productName(),
+      precio: faker.commerce.price(),
+      descripcion: faker.commerce.productDescription(),
+      codigo: faker.datatype.number(),
+      foto: faker.image.imageUrl(),
+      stock: faker.datatype.number(),
+    }
+    this.data.push(newFaker);
+    return newFaker
   }
 
   async create(tableName, data) {

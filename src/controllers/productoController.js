@@ -116,15 +116,8 @@ class Producto{
         });
     }else{
         for(let i =0; i<cant; i++){
-            respuesta.push({
-                nombre: faker.commerce.productName(),
-                precio: faker.commerce.price(),
-                descripcion: faker.commerce.productDescription(),
-                codigo: faker.datatype.number(),
-                foto: faker.image.imageUrl(),
-                stock: faker.datatype.number(),
-
-            })
+            const nuevoFaker = DBService.post(tableName);
+            respuesta.push(nuevoFaker);
         }
         res.json({
             data: respuesta
